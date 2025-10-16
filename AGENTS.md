@@ -1,18 +1,18 @@
 <!-- OPENSPEC:START -->
-# OpenSpec Instructions
+# OpenSpec の指示
 
-These instructions are for AI assistants working in this project.
+これらの指示は、このプロジェクトで作業する AI アシスタント向けです。
 
-Always open `@/openspec/AGENTS.md` when the request:
-- Mentions planning or proposals (words like proposal, spec, change, plan)
-- Introduces new capabilities, breaking changes, architecture shifts, or big performance/security work
-- Sounds ambiguous and you need the authoritative spec before coding
+リクエストが次のいずれかに該当する場合は、常に `@/openspec/AGENTS.md` を開いてください:
+- 計画や提案に関する記述（"proposal"、"spec"、"change"、"plan" のような語を含む）
+- 新しい機能、互換性を壊す変更、アーキテクチャの変更、大規模な性能やセキュリティ作業を導入する場合
+- 曖昧で、コーディング前に権威ある仕様を確認する必要がある場合
 
-Use `@/openspec/AGENTS.md` to learn:
-- How to create and apply change proposals
-- Spec format and conventions
-- Project structure and guidelines
+`@/openspec/AGENTS.md` を使って学んでください:
+- 変更提案の作成と適用方法
+- 仕様のフォーマットと規約
+- プロジェクト構成とガイドライン
 
-Keep this managed block so 'openspec update' can refresh the instructions.
+この管理ブロックは 'openspec update' が指示を更新できるよう、そのまま残してください。
 
 <!-- OPENSPEC:END -->

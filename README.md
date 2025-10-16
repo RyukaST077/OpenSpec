@@ -8,7 +8,7 @@
   </a>
   
 </p>
-<p align="center">Spec-driven development for AI coding assistants.</p>
+<p align="center">AIコーディングアシスタントのための仕様駆動開発（Spec-driven development）</p>
 <p align="center">
   <a href="https://github.com/Fission-AI/OpenSpec/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Fission-AI/OpenSpec/actions/workflows/ci.yml/badge.svg" /></a>
   <a href="https://www.npmjs.com/package/@fission-ai/openspec"><img alt="npm version" src="https://img.shields.io/npm/v/@fission-ai/openspec?style=flat-square" /></a>
@@ -23,72 +23,72 @@
 </p>
 
 <p align="center">
-  Follow <a href="https://x.com/0xTab">@0xTab on X</a> for updates · Join the <a href="https://discord.gg/YctCnvvshC">OpenSpec Discord</a> for help and questions.
+  更新情報は <a href="https://x.com/0xTab">@0xTab on X</a> をフォロー · 質問やサポートは <a href="https://discord.gg/YctCnvvshC">OpenSpec Discord</a> へ
 </p>
 
 # OpenSpec
 
-OpenSpec aligns humans and AI coding assistants with spec-driven development so you agree on what to build before any code is written. **No API keys required.**
+OpenSpec は、人間と AI コーディングアシスタントを仕様駆動のワークフローで整列させ、実装前に何を作るか合意できるようにします。**APIキーは不要です。**
 
-## Why OpenSpec?
+## なぜ OpenSpec なのか？
 
-AI coding assistants are powerful but unpredictable when requirements live in chat history. OpenSpec adds a lightweight specification workflow that locks intent before implementation, giving you deterministic, reviewable outputs.
+AI コーディングアシスタントは強力ですが、要件がチャット履歴に埋もれていると予測不可能になります。OpenSpec は軽量な仕様ワークフローを追加し、実装前に意図を固定化することで、決定可能でレビュー可能な出力を実現します。
 
-Key outcomes:
-- Human and AI stakeholders agree on specs before work begins.
-- Structured change folders (proposals, tasks, and spec updates) keep scope explicit and auditable.
-- Shared visibility into what's proposed, active, or archived.
-- Works with the AI tools you already use: custom slash commands where supported, context rules everywhere else.
+主な成果:
+- 人間と AI の関係者が作業開始前に仕様で合意する
+- 提案、タスク、仕様更新を含む構造化された変更フォルダーにより、スコープが明確かつ監査可能になる
+- 提案中、進行中、アーカイブ済みの変更を共通で把握できる
+- 既に使っている AI ツールと連携：ネイティブのスラッシュコマンドをサポートするツールではそれを利用し、それ以外は AGENTS.md を介して動作する
 
-## How OpenSpec compares (at a glance)
+## OpenSpec の比較（概要）
 
-- **Lightweight**: simple workflow, no API keys, minimal setup.
-- **Brownfield-first**: works great beyond 0→1. OpenSpec separates the source of truth from proposals: `openspec/specs/` (current truth) and `openspec/changes/` (proposed updates). This keeps diffs explicit and manageable across features.
-- **Change tracking**: proposals, tasks, and spec deltas live together; archiving merges the approved updates back into specs.
-- **Compared to spec-kit & Kiro**: those shine for brand-new features (0→1). OpenSpec also excels when modifying existing behavior (1→n), especially when updates span multiple specs.
+- **軽量**: シンプルなワークフロー、APIキー不要、最小限のセットアップ
+- **Brownfield-first**: 0→1 に限らず既存プロジェクトへの変更でも有効。OpenSpec は真の仕様（source of truth）と提案を分離します：`openspec/specs/`（現行の仕様） と `openspec/changes/`（提案された更新）。これにより機能横断の差分が明確に管理されます。
+- **変更追跡**: 提案、タスク、仕様のデルタが一緒に保存され、アーカイブ時に承認済みの更新を仕様へマージできます。
+- **spec-kit や Kiro と比較**: これらは新規機能（0→1）に向いていますが、OpenSpec は既存の挙動変更（1→n）、特に複数の仕様にまたがる更新で優れています。
 
-See the full comparison in [How OpenSpec Compares](#how-openspec-compares).
+詳細は [How OpenSpec Compares](#how-openspec-compares) を参照してください。
 
-## How It Works
+## 仕組み
 
 ```
 ┌────────────────────┐
 │ Draft Change       │
 │ Proposal           │
 └────────┬───────────┘
-         │ share intent with your AI
+         │ AI に意図を共有
          ▼
 ┌────────────────────┐
 │ Review & Align     │
-│ (edit specs/tasks) │◀──── feedback loop ──────┐
+│ (仕様やタスクを編集) │◀──── フィードバックループ ──────┐
 └────────┬───────────┘                          │
-         │ approved plan                        │
+         │ 承認された計画                        │
          ▼                                      │
 ┌────────────────────┐                          │
 │ Implement Tasks    │──────────────────────────┘
-│ (AI writes code)   │
+│ (AI がコードを作成) │
 └────────┬───────────┘
-         │ ship the change
+         │ 変更を出荷
          ▼
 ┌────────────────────┐
 │ Archive & Update   │
 │ Specs (source)     │
 └────────────────────┘
 
-1. Draft a change proposal that captures the spec updates you want.
-2. Review the proposal with your AI assistant until everyone agrees.
-3. Implement tasks that reference the agreed specs.
-4. Archive the change to merge the approved updates back into the source-of-truth specs.
+1. 変更提案（change proposal）を作成して反映したい仕様更新を記述します。
+2. AI アシスタントと提案をレビューして合意を得ます。
+3. 合意した仕様を参照してタスクを実装します。
+4. 変更をアーカイブして、承認済みの更新をソース・オブ・トゥルース（`openspec/specs/`）へマージします。
 ```
 
-## Getting Started
+## はじめ方
 
-### Supported AI Tools
+### 対応する AI ツール
 
-#### Native Slash Commands
-These tools have built-in OpenSpec commands. Select the OpenSpec integration when prompted.
+#### ネイティブスラッシュコマンド
+以下のツールは OpenSpec のコマンドをネイティブにサポートします。OpenSpec 統合を選択してください。
 
-| Tool | Commands |
+| ツール | コマンド |
 |------|----------|
 | **Claude Code** | `/openspec:proposal`, `/openspec:apply`, `/openspec:archive` |
 | **Cursor** | `/openspec-proposal`, `/openspec-apply`, `/openspec-archive` |
@@ -96,64 +96,63 @@ These tools have built-in OpenSpec commands. Select the OpenSpec integration whe
 | **OpenCode** | `/openspec-proposal`, `/openspec-apply`, `/openspec-archive` |
 | **Kilo Code** | `/openspec-proposal.md`, `/openspec-apply.md`, `/openspec-archive.md` (`.kilocode/workflows/`) |
 | **Windsurf** | `/openspec-proposal`, `/openspec-apply`, `/openspec-archive` (`.windsurf/workflows/`) |
-| **Codex** | `/openspec-proposal`, `/openspec-apply`, `/openspec-archive` (global: `~/.codex/prompts`, auto-installed) |
+| **Codex** | `/openspec-proposal`, `/openspec-apply`, `/openspec-archive` (global: `~/.codex/prompts`, 自動インストールあり) |
 | **GitHub Copilot** | `/openspec-proposal`, `/openspec-apply`, `/openspec-archive` (`.github/prompts/`) |
 | **Amazon Q Developer** | `@openspec-proposal`, `@openspec-apply`, `@openspec-archive` (`.amazonq/prompts/`) |
 
-Kilo Code discovers team workflows automatically. Save the generated files under `.kilocode/workflows/` and trigger them from the command palette with `/openspec-proposal.md`, `/openspec-apply.md`, or `/openspec-archive.md`.
+Kilo Code はチームのワークフローを自動検出します。生成されたファイルを `.kilocode/workflows/` に保存し、コマンドパレットから `/openspec-proposal.md`、`/openspec-apply.md`、`/openspec-archive.md` を実行できます。
 
-#### AGENTS.md Compatible
-These tools automatically read workflow instructions from `openspec/AGENTS.md`. Ask them to follow the OpenSpec workflow if they need a reminder. Learn more about the [AGENTS.md convention](https://agents.md/).
+#### AGENTS.md 対応
+これらのツールはプロジェクト内の `openspec/AGENTS.md` を読み取り、自動的にワークフロー指示に従います。詳細は [AGENTS.md の慣習](https://agents.md/) を参照してください。
 
-| Tools |
+| ツール |
 |-------|
-| Amp • Jules • Gemini CLI • Others |
+| Amp • Jules • Gemini CLI • その他 |
 
-### Install & Initialize
+### インストールと初期化
 
-#### Prerequisites
-- **Node.js >= 20.19.0** - Check your version with `node --version`
+#### 前提条件
+- **Node.js >= 20.19.0** - バージョンは `node --version` で確認してください
 
-#### Step 1: Install the CLI globally
+#### ステップ1: CLI をグローバルにインストール
 
 ```bash
 npm install -g @fission-ai/openspec@latest
 ```
 
-Verify installation:
+インストール確認:
 ```bash
 openspec --version
 ```
 
-#### Step 2: Initialize OpenSpec in your project
+#### ステップ2: プロジェクトで OpenSpec を初期化
 
-Navigate to your project directory:
+プロジェクトディレクトリに移動:
 ```bash
 cd my-project
 ```
 
-Run the initialization:
+初期化を実行:
 ```bash
 openspec init
 ```
 
-**What happens during initialization:**
-- You'll be prompted to pick any natively supported AI tools (Claude Code, Cursor, OpenCode, etc.); other assistants always rely on the shared `AGENTS.md` stub
-- OpenSpec automatically configures slash commands for the tools you choose and always writes a managed `AGENTS.md` hand-off at the project root
-- A new `openspec/` directory structure is created in your project
+**初期化時に行われること:**
+- ネイティブ対応ツール（Claude Code、Cursor、OpenCode など）を選択するプロンプトが表示されます。その他のアシスタントは共通の `AGENTS.md` を利用します。
+- 選択したツール向けにスラッシュコマンド設定が自動的に行われ、プロジェクトルートに管理された `AGENTS.md` が書き出されます。
+- プロジェクトに `openspec/` ディレクトリ構成が作成されます。
 
-**After setup:**
-- Primary AI tools can trigger `/openspec` workflows without additional configuration
-- Run `openspec list` to verify the setup and view any active changes
-- If your coding assistant doesn't surface the new slash commands right away, restart it. Slash commands are loaded at startup,
-  so a fresh launch ensures they appear.
+**セットアップ後:**
+- プライマリの AI ツールは追加設定なしで `/openspec` ワークフローをトリガーできます。
+- `openspec list` を実行してセットアップとアクティブな変更を確認してください。
+- スラッシュコマンドがすぐに表示されない場合は、アシスタントを再起動してください。スラッシュコマンドは起動時に読み込まれます。
 
-### Create Your First Change
+### 最初の変更を作成する
 
-Here's a real example showing the complete OpenSpec workflow. This works with any AI tool. Those with native slash commands will recognize the shortcuts automatically.
+以下は OpenSpec ワークフローの実例です。どの AI ツールでも動作します。ネイティブスラッシュコマンドを持つツールではショートカットが自動で認識されます。
 
-#### 1. Draft the Proposal
-Start by asking your AI to create a change proposal:
+#### 1. 提案（Proposal）を作成
+AI に変更提案を作成してもらいます。
 
 ```text
 You: Create an OpenSpec change proposal for adding profile search filters by role and team
@@ -163,17 +162,17 @@ AI:  I'll create an OpenSpec change proposal for profile filters.
      *Scaffolds openspec/changes/add-profile-filters/ with proposal.md, tasks.md, spec deltas.*
 ```
 
-#### 2. Verify & Review
-Check that the change was created correctly and review the proposal:
+#### 2. 検証とレビュー
+変更が正しく作成されたかを確認し、提案をレビューします。
 
 ```bash
-$ openspec list                             # Confirm the change folder exists
-$ openspec validate add-profile-filters     # Validate spec formatting
-$ openspec show add-profile-filters         # Review proposal, tasks, and spec delta
+$ openspec list                             # 変更フォルダが存在することを確認
+$ openspec validate add-profile-filters     # 仕様フォーマットを検証
+$ openspec show add-profile-filters         # 提案、タスク、仕様デルタを確認
 ```
 
-#### 3. Refine the Specs
-Iterate on the specifications until they match your needs:
+#### 3. 仕様を洗練する
+仕様が要件に合うまで反復します。
 
 ```text
 You: Can you add acceptance criteria for the role and team filters?
@@ -182,69 +181,69 @@ AI:  I'll update the spec delta with scenarios for role and team filters.
      *Edits openspec/changes/add-profile-filters/specs/profile/spec.md and tasks.md.*
 ```
 
-#### 4. Implement the Change
-Once specs look good, start implementation:
+#### 4. 変更を実装する
+仕様が整ったら実装を開始します。
 
 ```text
 You: The specs look good. Let's implement this change.
-     (Shortcut for tools with slash commands: /openspec:apply add-profile-filters)
+     (Shortcut for tools with slash commands: /openspec-apply add-profile-filters)
 
 AI:  I'll work through the tasks in the add-profile-filters change.
      *Implements tasks from openspec/changes/add-profile-filters/tasks.md*
      *Marks tasks complete: Task 1.1 ✓, Task 1.2 ✓, Task 2.1 ✓...*
 ```
 
-#### 5. Archive the Completed Change
-After implementation is complete, archive the change:
+#### 5. 完了した変更をアーカイブする
+実装が完了したら変更をアーカイブします。
 
 ```text
 AI:  All tasks are complete. The implementation is ready.
 
 You: Please archive the change
-     (Shortcut for tools with slash commands: /openspec:archive add-profile-filters)
+     (Shortcut for tools with slash commands: /openspec-archive add-profile-filters)
 
 AI:  I'll archive the add-profile-filters change.
     *Runs: openspec archive add-profile-filters --yes*
      ✓ Change archived successfully. Specs updated. Ready for the next feature!
 ```
 
-Or run the command yourself in terminal:
+またはターミナルで実行:
 ```bash
-$ openspec archive add-profile-filters --yes  # Archive the completed change without prompts
+$ openspec archive add-profile-filters --yes  # 対話なしで完了した変更をアーカイブ
 ```
 
-**Note:** Tools with native slash commands (Claude Code, Cursor, Codex) can use the shortcuts shown. All other tools work with natural language requests to "create an OpenSpec proposal", "apply the OpenSpec change", or "archive the change".
+**注:** ネイティブスラッシュコマンドを持つツール（Claude Code、Cursor、Codex など）は上記ショートカットを使用できます。他のツールでも自然言語で「OpenSpec 提案を作って」「OpenSpec 変更を適用して」「変更をアーカイブして」と依頼できます。
 
-## Command Reference
+## コマンドリファレンス
 
 ```bash
-openspec list               # View active change folders
-openspec view               # Interactive dashboard of specs and changes
-openspec show <change>      # Display change details (proposal, tasks, spec updates)
-openspec validate <change>  # Check spec formatting and structure
-openspec archive <change> [--yes|-y]   # Move a completed change into archive/ (non-interactive with --yes)
+openspec list               # アクティブな変更フォルダを見る
+openspec view               # 仕様と変更の対話型ダッシュボード
+openspec show <change>      # 変更の詳細を表示（提案、タスク、仕様更新）
+openspec validate <change>  # 仕様の形式と構造をチェック
+openspec archive <change> [--yes|-y]   # 完了した変更を archive/ に移動（--yes で非対話）
 ```
 
-## Example: How AI Creates OpenSpec Files
+## 例: AI が作成する OpenSpec ファイル
 
-When you ask your AI assistant to "add two-factor authentication", it creates:
+「二要素認証を追加して」と AI に頼むと、次のような構成が作成されます。
 
 ```
 openspec/
 ├── specs/
 │   └── auth/
-│       └── spec.md           # Current auth spec (if exists)
+│       └── spec.md           # 現在の認証仕様（存在する場合）
 └── changes/
-    └── add-2fa/              # AI creates this entire structure
-        ├── proposal.md       # Why and what changes
-        ├── tasks.md          # Implementation checklist
-        ├── design.md         # Technical decisions (optional)
+    └── add-2fa/              # AI がこのフォルダごと作成
+        ├── proposal.md       # 目的と変更内容
+        ├── tasks.md          # 実装チェックリスト
+        ├── design.md         # 技術的決定（任意）
         └── specs/
             └── auth/
-                └── spec.md   # Delta showing additions
+                └── spec.md   # 追加点を示すデルタ
 ```
 
-### AI-Generated Spec (created in `openspec/specs/auth/spec.md`):
+### AI が生成する仕様（`openspec/specs/auth/spec.md` に作成される例）:
 
 ```markdown
 # Auth Specification
@@ -261,7 +260,7 @@ The system SHALL issue a JWT on successful login.
 - THEN a JWT is returned
 ```
 
-### AI-Generated Change Delta (created in `openspec/changes/add-2fa/specs/auth/spec.md`):
+### AI が生成する変更デルタ（`openspec/changes/add-2fa/specs/auth/spec.md` に作成される例）:
 
 ```markdown
 # Delta for Auth
@@ -275,7 +274,7 @@ The system MUST require a second factor during login.
 - THEN an OTP challenge is required
 ```
 
-### AI-Generated Tasks (created in `openspec/changes/add-2fa/tasks.md`):
+### AI が生成するタスク（`openspec/changes/add-2fa/tasks.md` に作成される例）:
 
 ```markdown
 ## 1. Database Setup
@@ -292,60 +291,60 @@ The system MUST require a second factor during login.
 - [ ] 3.2 Update login flow UI
 ```
 
-**Important:** You don't create these files manually. Your AI assistant generates them based on your requirements and the existing codebase.
+**重要:** これらのファイルを手動で作成する必要はありません。AI アシスタントが既存のコードベースと要件に基づいて生成します。
 
-## Understanding OpenSpec Files
+## OpenSpec ファイルの理解
 
-### Delta Format
+### デルタ形式
 
-Deltas are "patches" that show how specs change:
+デルタは仕様の変更点を示す「パッチ」です。
 
-- **`## ADDED Requirements`** - New capabilities
-- **`## MODIFIED Requirements`** - Changed behavior (include complete updated text)
-- **`## REMOVED Requirements`** - Deprecated features
+- **`## ADDED Requirements`** - 新しい機能
+- **`## MODIFIED Requirements`** - 変更された振る舞い（完全な更新テキストを含める）
+- **`## REMOVED Requirements`** - 廃止された機能
 
-**Format requirements:**
-- Use `### Requirement: <name>` for headers
-- Every requirement needs at least one `#### Scenario:` block
-- Use SHALL/MUST in requirement text
+**フォーマット要件:**
+- 見出しには `### Requirement: <name>` を使用する
+- 各要件には少なくとも 1 つの `#### Scenario:` ブロックが必要
+- 要件文では SHALL/MUST を使用する
 
-## How OpenSpec Compares
+## OpenSpec の比較
 
-### vs. spec-kit
-OpenSpec’s two-folder model (`openspec/specs/` for the current truth, `openspec/changes/` for proposed updates) keeps state and diffs separate. This scales when you modify existing features or touch multiple specs. spec-kit is strong for greenfield/0→1 but provides less structure for cross-spec updates and evolving features.
+### spec-kit と比較
+OpenSpec の二つのフォルダモデル（`openspec/specs/` が現行の仕様、`openspec/changes/` が提案）により状態と差分が分離されます。これにより既存の機能を変更したり、複数の仕様にまたがる変更を管理しやすくなります。spec-kit は 0→1 に強い一方、OpenSpec は進化的変更に強みがあります。
 
-### vs. Kiro.dev
-OpenSpec groups every change for a feature in one folder (`openspec/changes/feature-name/`), making it easy to track related specs, tasks, and designs together. Kiro spreads updates across multiple spec folders, which can make feature tracking harder.
+### Kiro.dev と比較
+OpenSpec は機能ごとの変更を一つのフォルダにまとめ（`openspec/changes/feature-name/`）、関連する仕様、タスク、設計を追跡しやすくします。Kiro は変更を複数の仕様フォルダに分散させるため、追跡がやや難しくなる場合があります。
 
-### vs. No Specs
-Without specs, AI coding assistants generate code from vague prompts, often missing requirements or adding unwanted features. OpenSpec brings predictability by agreeing on the desired behavior before any code is written.
+### 仕様を使わない場合との比較
+仕様がないと、AI は曖昧なプロンプトからコードを生成しがちで、要件を満たさなかったり不要な機能を追加してしまうことがあります。OpenSpec は実装前に期待される振る舞いを合意することで予測可能性を高めます。
 
-## Team Adoption
+## チーム導入
 
-1. **Initialize OpenSpec** – Run `openspec init` in your repo.
-2. **Start with new features** – Ask your AI to capture upcoming work as change proposals.
-3. **Grow incrementally** – Each change archives into living specs that document your system.
-4. **Stay flexible** – Different teammates can use Claude Code, Cursor, or any AGENTS.md-compatible tool while sharing the same specs.
+1. **OpenSpec を初期化** – リポジトリ内で `openspec init` を実行します。
+2. **新機能から始める** – AI に今後の作業を変更提案としてキャプチャしてもらいます。
+3. **段階的に成長させる** – 各変更はアーカイブされ、ドキュメント化された仕様として蓄積されます。
+4. **柔軟性を保つ** – チームメンバーは Claude Code、Cursor、または AGENTS.md 対応ツールを使い分けつつ同じ仕様を共有できます。
 
-Run `openspec update` whenever someone switches tools so your agents pick up the latest instructions and slash-command bindings.
+ツールを切り替えた場合は `openspec update` を実行してエージェント指示とスラッシュコマンドを最新化してください。
 
-## Updating OpenSpec
+## OpenSpec の更新方法
 
-1. **Upgrade the package**
+1. **パッケージをアップグレード**
    ```bash
    npm install -g @fission-ai/openspec@latest
    ```
-2. **Refresh agent instructions**
-   - Run `openspec update` inside each project to regenerate AI guidance and ensure the latest slash commands are active.
+2. **エージェント指示を更新**
+   - 各プロジェクト内で `openspec update` を実行して AI 指示を再生成し、最新のスラッシュコマンドを反映させます。
 
-## Contributing
+## コントリビュート
 
-- Install dependencies: `pnpm install`
-- Build: `pnpm run build`
-- Test: `pnpm test`
-- Develop CLI locally: `pnpm run dev` or `pnpm run dev:cli`
-- Conventional commits (one-line): `type(scope): subject`
+- 依存関係をインストール: `pnpm install`
+- ビルド: `pnpm run build`
+- テスト: `pnpm test`
+- ローカルで CLI を開発: `pnpm run dev` または `pnpm run dev:cli`
+- Conventional commits（ワンライナー）: `type(scope): subject`
 
-## License
+## ライセンス
 
 MIT
